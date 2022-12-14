@@ -2,6 +2,9 @@
 download DAY:
     aoc download -I --day {{DAY}} --input input/day{{DAY}}
 
+debug DAY:
+    RUST_LOG=trace cargo run --bin=day{{DAY}} < input/day{{DAY}}
+
 run DAY:
     cargo run --release --bin=day{{DAY}} < input/day{{DAY}}
 

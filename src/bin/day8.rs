@@ -1,76 +1,11 @@
 use std::{io, ops::Index};
 
 use anyhow::{bail, Context, Result};
+use aoc2022::grid::Grid;
 use itertools::Itertools;
 use log::trace;
 
 type Input = Grid;
-
-struct Grid {
-    inner: Vec<Vec<i32>>,
-
-    nrows: usize,
-    ncols: usize,
-}
-
-impl Grid {
-    fn new(inner: Vec<Vec<i32>>) -> Result<Self> {
-        if !inner.iter().map(|v| v.len()).all_equal() {
-            bail!("Expected all rows to be of equal len");
-        }
-
-        let nrows = inner.len();
-        let ncols = inner[0].len();
-        Ok(Self {
-            inner,
-            nrows,
-            ncols,
-        })
-    }
-
-    fn nrows(&self) -> usize {
-        self.nrows
-    }
-
-    fn ncols(&self) -> usize {
-        self.ncols
-    }
-
-    fn iter_row(&self, i: usize) -> impl Iterator<Item = i32> {
-        self.inner[i].clone().into_iter()
-    }
-
-    fn iter_col(&self, i: usize) -> impl Iterator<Item = i32> + '_ {
-        let mut c = 0;
-        std::iter::from_fn(move || {
-            let r = if c < self.nrows() {
-                Some(self[(i, c)])
-            } else {
-                None
-            };
-
-            c += 1;
-
-            r
-        })
-    }
-}
-
-impl Index<usize> for Grid {
-    type Output = Vec<i32>;
-
-    fn index(&self, index: usize) -> &Self::Output {
-        self.inner.index(index)
-    }
-}
-
-impl Index<(usize, usize)> for Grid {
-    type Output = i32;
-
-    fn index(&self, index: (usize, usize)) -> &Self::Output {
-        self.inner.index(index.1).index(index.0)
-    }
-}
 
 fn parse_input(input: &str) -> Result<Input> {
     Grid::new(

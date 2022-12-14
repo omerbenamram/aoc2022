@@ -3,6 +3,8 @@ use std::{ops::RangeInclusive, time::Duration};
 use anyhow::Context;
 use itertools::Itertools;
 
+pub mod grid;
+
 pub fn timed<R, F>(f: F) -> (R, Duration)
 where
     F: Fn() -> R,
