@@ -114,7 +114,7 @@ fn part2(input: &Input) -> Result<i32> {
 
     cpu.simulate_program_for(
         input.to_owned(),
-        220,
+        240,
         Box::new(move |register, clock| {
             if clock % 40 == 0 {
                 println!("!");
