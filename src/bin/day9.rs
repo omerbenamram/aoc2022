@@ -6,7 +6,6 @@ use anyhow::{Context, Result};
 use aoc2022::grid::{InfiniteGrid, Point};
 use itertools::Itertools;
 use log::trace;
-use rstest::rstest;
 
 type Input = Vec<Instruction>;
 
