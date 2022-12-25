@@ -10,3 +10,9 @@ run DAY:
 
 new DAY:
     cp template.rs src/bin/day{{DAY}}.rs
+
+test:
+    cargo test
+
+install:
+    cargo install aoc-cli

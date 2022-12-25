@@ -1,6 +1,6 @@
 use std::{
     collections::{hash_map, HashMap},
-    ops::{Index, RangeInclusive},
+    ops::Index,
 };
 
 use anyhow::bail;
